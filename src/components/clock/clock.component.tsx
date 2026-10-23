@@ -16,11 +16,12 @@ export const ClockComponent = () => {
 	}, []);
 
 	const current = {
-		hours: now.getHours() % 12,
+		hours: now.getHours(),
 		minutes: now.getMinutes(),
 		seconds: now.getSeconds(),
 	};
-	const time = [now.getHours(), current.minutes, current.seconds]
+
+	const time = [current.hours, current.minutes, current.seconds]
 		.map((value) => String(value).padStart(2, "0"))
 		.join(":");
 
@@ -42,7 +43,7 @@ export const ClockComponent = () => {
 							<span
 								key={index}
 								className={`clock-widget__dot${
-									current[unit] === index ? " clock-widget__dot--active" : ""
+									current[unit] % count === index ? " clock-widget__dot--active" : ""
 								}`}
 								style={{
 									transform: `rotate(${
