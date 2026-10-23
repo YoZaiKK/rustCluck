@@ -31,9 +31,29 @@ body,
 	-ms-user-select: none;
 }
 
+.clock-stage {
+	--clock-size: 432px;
+	--close-size: 84px;
+	--clock-gap: 50px;
+	position: relative;
+	isolation: isolate;
+	display: grid;
+	grid-template-columns: var(--clock-size) var(--close-size);
+	align-items: center;
+	gap: var(--clock-gap);
+	width: max-content;
+}
+
+.clock-stage .clock-container {
+	position: relative;
+	z-index: 1;
+	transform: translateX(calc((var(--close-size) + var(--clock-gap)) / 2));
+	transition: transform 0.5s ease-in-out;
+}
+
 .clock-container {
-	width: 360px;
-	aspect-ratio: 1;
+	width: 432px;
+	height: 432px;
 	display: grid;
 	place-items: center;
 	border-radius: 50%;
@@ -48,4 +68,144 @@ body,
 	);
 
 	cursor: move;
+}
+
+.close-button {
+	position: relative;
+	z-index: 0;
+	visibility: hidden;
+	opacity: 0;
+	pointer-events: none;
+	transform: translateX(calc((var(--clock-size) + var(--clock-gap)) / -2));
+	transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out,
+		visibility 0s linear 0.5s;
+}
+
+.clock-stage:hover .clock-container,
+.clock-stage:focus-within .clock-container {
+	transform: translateX(0);
+}
+
+.clock-stage:hover .close-button,
+.clock-stage:focus-within .close-button {
+	visibility: visible;
+	opacity: 1;
+	pointer-events: auto;
+	transform: translateX(0);
+	transition-delay: 0s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.clock-stage .clock-container,
+	.clock-stage .close-button {
+		transition: none;
+	}
+}
+
+.montserrat-alternates-thin {
+	font-family: "Montserrat Alternates", sans-serif;
+	font-weight: 100;
+	font-style: normal;
+}
+
+.montserrat-alternates-extralight {
+	font-family: "Montserrat Alternates", sans-serif;
+	font-weight: 200;
+	font-style: normal;
+}
+
+.montserrat-alternates-light {
+	font-family: "Montserrat Alternates", sans-serif;
+	font-weight: 300;
+	font-style: normal;
+}
+
+.montserrat-alternates-regular {
+	font-family: "Montserrat Alternates", sans-serif;
+	font-weight: 400;
+	font-style: normal;
+}
+
+.montserrat-alternates-medium {
+	font-family: "Montserrat Alternates", sans-serif;
+	font-weight: 500;
+	font-style: normal;
+}
+
+.montserrat-alternates-semibold {
+	font-family: "Montserrat Alternates", sans-serif;
+	font-weight: 600;
+	font-style: normal;
+}
+
+.montserrat-alternates-bold {
+	font-family: "Montserrat Alternates", sans-serif;
+	font-weight: 700;
+	font-style: normal;
+}
+
+.montserrat-alternates-extrabold {
+	font-family: "Montserrat Alternates", sans-serif;
+	font-weight: 800;
+	font-style: normal;
+}
+
+.montserrat-alternates-black {
+	font-family: "Montserrat Alternates", sans-serif;
+	font-weight: 900;
+	font-style: normal;
+}
+
+.montserrat-alternates-thin-italic {
+	font-family: "Montserrat Alternates", sans-serif;
+	font-weight: 100;
+	font-style: italic;
+}
+
+.montserrat-alternates-extralight-italic {
+	font-family: "Montserrat Alternates", sans-serif;
+	font-weight: 200;
+	font-style: italic;
+}
+
+.montserrat-alternates-light-italic {
+	font-family: "Montserrat Alternates", sans-serif;
+	font-weight: 300;
+	font-style: italic;
+}
+
+.montserrat-alternates-regular-italic {
+	font-family: "Montserrat Alternates", sans-serif;
+	font-weight: 400;
+	font-style: italic;
+}
+
+.montserrat-alternates-medium-italic {
+	font-family: "Montserrat Alternates", sans-serif;
+	font-weight: 500;
+	font-style: italic;
+}
+
+.montserrat-alternates-semibold-italic {
+	font-family: "Montserrat Alternates", sans-serif;
+	font-weight: 600;
+	font-style: italic;
+}
+
+.montserrat-alternates-bold-italic {
+	font-family: "Montserrat Alternates", sans-serif;
+	font-weight: 700;
+	font-style: italic;
+}
+
+.montserrat-alternates-extrabold-italic {
+	font-family: "Montserrat Alternates", sans-serif;
+	font-weight: 800;
+	font-style: italic;
+}
+
+.montserrat-alternates-black-italic {
+	font-family: "Montserrat Alternates", sans-serif;
+	font-weight: 900;
+	font-style: italic;
 }

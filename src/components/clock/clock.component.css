@@ -1,8 +1,8 @@
 .clock-widget {
-	--clock-radius: clamp(80px, 15vw, 340px);
-	--dot-hours-h: clamp(20px, 5vw, 60px);
-	--dot-minutes-h: clamp(10px, 2vw, 25px);
-	--dot-seconds-size: clamp(5px, 0.75vw, 12px);
+	--clock-radius: 144px;
+	--dot-hours-h: 40px;
+	--dot-minutes-h: 16px;
+	--dot-seconds-size: 6px;
 	--clock-muted: rgb(0 0 0 / 50%);
 	--clock-line: rgb(0 0 0 / 25%);
 	display: flex;
@@ -10,6 +10,7 @@
 	align-items: center;
 	gap: 1.5rem;
 	padding: 1rem;
+	font-family: "Montserrat Alternates", sans-serif;
 }
 
 .clock-widget__controls {
@@ -63,15 +64,15 @@
 }
 
 .clock-widget__ring--hours {
-	--dot-w: clamp(7px, 1vw, 16px);
+	--dot-w: 8px;
 	--dot-h: var(--dot-hours-h);
-	--dot-color: rgb(0, 105, 168);
+	--dot-color: #258354;
 }
 
 .clock-widget__ring--minutes {
-	--dot-w: clamp(5px, 0.75vw, 12px);
+	--dot-w: 6px;
 	--dot-h: var(--dot-minutes-h);
-	--dot-color: rgb(0, 188, 255);
+	--dot-color: #2fa46a;
 }
 
 .clock-widget__ring--seconds {
@@ -91,9 +92,11 @@
 }
 
 .clock-widget__time {
-	color: var(--clock-muted);
-	font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
-	font-size: clamp(1.5rem, 3.5vw + 0.45rem, 4rem);
+	color: #fff;
+	font-family: inherit;
+	font-size: 42px;
+	font-weight: 700;
+	font-style: normal;
 	font-variant-numeric: tabular-nums;
 	line-height: 1;
 }
