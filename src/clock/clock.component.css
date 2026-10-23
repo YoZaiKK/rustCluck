@@ -1,0 +1,106 @@
+.clock-widget {
+	--clock-radius: clamp(80px, 15vw, 340px);
+	--dot-hours-h: clamp(20px, 5vw, 60px);
+	--dot-minutes-h: clamp(10px, 2vw, 25px);
+	--dot-seconds-size: clamp(5px, 0.75vw, 12px);
+	--clock-muted: rgb(0 0 0 / 50%);
+	--clock-line: rgb(0 0 0 / 25%);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 1.5rem;
+	padding: 1rem;
+}
+
+.clock-widget__controls {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	padding: 0.25rem 0.75rem;
+	border: 1px solid var(--clock-line);
+	border-radius: 5px;
+	font-size: 0.875rem;
+	cursor: pointer;
+}
+
+.clock-widget__controls input {
+	margin: 0;
+	padding: 0;
+	box-shadow: none;
+	accent-color: rgb(39, 168, 0);
+}
+
+.clock-widget__controls input:focus-visible {
+	outline: 2px solid currentColor;
+	outline-offset: 3px;
+}
+
+.clock-widget__face {
+	position: relative;
+	display: grid;
+	place-items: center;
+	width: calc(var(--clock-radius) * 2);
+	height: calc(var(--clock-radius) * 2);
+	margin: var(--dot-hours-h);
+	border-radius: 50%;
+}
+
+.clock-widget__ring {
+	position: absolute;
+	inset: 0;
+	pointer-events: none;
+}
+
+.clock-widget__dot {
+	position: absolute;
+	inset: 0;
+	margin: auto;
+	width: var(--dot-w);
+	height: var(--dot-h);
+	border-radius: 10px;
+	background-color: var(--clock-muted);
+	opacity: 0.2;
+}
+
+.clock-widget__ring--hours {
+	--dot-w: clamp(7px, 1vw, 16px);
+	--dot-h: var(--dot-hours-h);
+	--dot-color: rgb(0, 105, 168);
+}
+
+.clock-widget__ring--minutes {
+	--dot-w: clamp(5px, 0.75vw, 12px);
+	--dot-h: var(--dot-minutes-h);
+	--dot-color: rgb(0, 188, 255);
+}
+
+.clock-widget__ring--seconds {
+	--dot-w: var(--dot-seconds-size);
+	--dot-h: var(--dot-seconds-size);
+	--dot-color: rgb(251, 44, 54);
+}
+
+.clock-widget__ring--minutes .clock-widget__dot:nth-child(5n + 1),
+.clock-widget__ring--seconds .clock-widget__dot {
+	opacity: 0;
+}
+
+.clock-widget__ring .clock-widget__dot.clock-widget__dot--active {
+	background-color: var(--dot-color);
+	opacity: 1;
+}
+
+.clock-widget__time {
+	color: var(--clock-muted);
+	font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+	font-size: clamp(1.5rem, 3.5vw + 0.45rem, 4rem);
+	font-variant-numeric: tabular-nums;
+	line-height: 1;
+}
+
+@media (prefers-color-scheme: dark) {
+	.clock-widget {
+		--clock-muted: rgb(255 255 255 / 60%);
+		--clock-line: rgba(255, 253, 253, 0.25);
+	}
+}
